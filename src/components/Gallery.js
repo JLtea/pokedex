@@ -1,44 +1,49 @@
 import React from 'react';
 import axios from 'axios';
-import Category from './Category.js';
+import Pokemon from './Pokemon.js';
 
 class Gallery extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: 1,
-            species: [],
-        };
+            pokedex: []
+        }
+        axios.get ('https://pokeapi.co/api/v2/pokemon?limit=24')
+        .then(pokeurls => {
+            const pokedex = [];
+            pokeurls.data.results.forEach(element => {
+                var id = element.url.substr(34);
+                id = id.substr(id, id.length - 1);
+                pokedex.push({
+                    name: element.name,
+                    id: id
+                })
+            })
+            this.setState({pokedex: pokedex});
+        });
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(val) {
-        axios.get("https://pokeapi.co/api/v2/type/" + this.state.type + "/")
-        .then(response => {
-            this.setState({
-                species : response.data.pokemon
-            })
-        })
-        .catch(error => {
-            console.log(error)
-        });
-        this.setState({type: val});
+    handleClick(typeN) {
+        axios.get("https://pokeapi.co/api/v2/type/" + typeN + "/")
+            .then(pokeurls => {
+                const pokedex = [];
+                pokeurls.data.pokemon.forEach(element => {
+                    var id = element.pokemon.url.substr(34);
+                    id = id.substr(id, id.length - 1);
+                    pokedex.push({
+                        name: element.pokemon.name,
+                        id: id
+                    })
+                })
+                this.setState({pokedex: pokedex});
+            });   
+
     }
 
-    componentDidMount() {
-        axios.get("https://pokeapi.co/api/v2/type/" + this.state.type + "/")
-            .then(response => {
-                this.setState({
-                    species : response.data.pokemon
-                })
-            })
-            .catch(error => {
-                console.log(error)
-            });
-    }
+
 
     render() {
-        console.log(this.state.species);
         return (
             <div>
                 <div>
@@ -61,8 +66,8 @@ class Gallery extends React.Component {
                     <a onClick = {() => this.handleClick(17)}> Dark </a>
                     <a onClick = {() => this.handleClick(18)}> Fairy </a>
                 </div>
-                <div>
-                    <Category species = {this.state.species} />
+                <div className = "grid">
+                    {this.state.pokedex.map((info) => <Pokemon key = {info.name} id = {info.id} name = {info.name} callBack = {this.props.callBack}/>)}
                 </div>
             </div>
         );

@@ -1,43 +1,50 @@
-
 import React from 'react';
 import './App.css';
-import Header from './components/Header.js';
-import PokeList from './components/List/PokeList.js';
-import Gallery from './components/Gallery/Gallery.js';
+import Gallery from './components/Gallery';
+import Search from './components/Search';
+import Detail from './components/Detail';
 
-const baseURL = "https://pokeapi.co/api/v2/pokemon/";
-
+import PropTypes from 'prop-types'
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listview: 1,
+      view: 2,
+      id: 25
     }
-    this.handleClick = this.handleClick.bind(this);
+
+    this.handleTab = this.handleTab.bind(this);
+    this.showDetails = this.showDetails.bind(this);
   }
 
-
-  handleClick(value) {
-    this.setState({listview: value});
+  handleTab(value) {
+    this.setState({view: value});
   }
+
+  showDetails(value) {
+    this.setState({view: 3, id: value})
+  }
+  static propTypes = {
+    id: PropTypes.number,
+    name: PropTypes.string,
+    callback: PropTypes.func,
+    filtertype: PropTypes.string
+  }
+
 
   render() {
-    let content;
-    const {listview} = this.state;
-    if (listview === 1) {
-      content = <PokeList/>;
-    } else if (listview === 2) {
-      content = <Gallery/>;
-    }
+    const view = this.state.view;
     return (
       <div>
-        <Header/>
-        <div>
-          <a onClick = {() => this.handleClick(1)}>Search</a>
-          <a onClick = {() => this.handleClick(2)}>Gallery</a>
+        <header>Pokedex</header>
+        <div className = "navbar">
+          <a className = "tabs" onClick = {() => this.handleTab(2)}>Search</a>
+          <a className = "tabs" onClick = {() => this.handleTab(1)}>Gallery</a>
         </div>
-        <div className = "container">
-          {content}
+        <div className = "content">
+          {view === 1 ? <Gallery callBack = {this.showDetails}/> : null}
+          {view === 2 ? <Search callBack = {this.showDetails}/> : null}
+          {view === 3 ? <Detail id = {this.state.id}/> : null}
         </div>
       </div>
     );
