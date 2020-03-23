@@ -17,6 +17,7 @@ pages:
     - npm install
     - CI=false npm run build
     - mv dist public
+    - mv build public
 
   artifacts:
     paths:
