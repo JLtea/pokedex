@@ -4,7 +4,6 @@ import axios from 'axios';
 class Pokemon extends React.Component {
     constructor(props) {
         super(props);
-        var image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + this.props.id + ".png";
 		var pokeurl = "https://pokeapi.co/api/v2/pokemon/" + this.props.id;
         this.state = {
             id: this.props.id,
@@ -30,7 +29,7 @@ class Pokemon extends React.Component {
         return(
             <div onClick = {() => this.props.callBack(this.state.id)}>
                 {this.state.name}
-                <img src = {this.state.spriteUrl}/>
+                <img alt = "image not available" src = {this.state.spriteUrl}/>
                 <p>{this.state.types}</p>
             </div>
         );

@@ -54,8 +54,8 @@ class Detail extends React.Component {
         return (
             <div>
                 {this.state.name}
-                <img src = {this.state.sprites[0]}/>
-                <img src = {this.state.sprites[1]}/>
+                <img alt = "image not available" src = {this.state.sprites[0]}/>
+                <img alt = "image not available" src = {this.state.sprites[1]}/>
                 <a>Dex # {this.state.id}</a> 
                 <p>Types: {this.state.types}</p>
                 <p>Abilities: {this.state.abilities}</p>
