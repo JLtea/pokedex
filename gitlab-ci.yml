@@ -1,7 +1,7 @@
 image: node:latest
 
 variables:
-  PUBLIC_URL: https://tlee95.gitlab.io/mp2
+  PUBLIC_URL: /mp2
 
 cache:
   paths:

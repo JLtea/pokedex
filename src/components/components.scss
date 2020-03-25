@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway');
 
+$gridcol: 7% 15% 15% 15% 10%;
+$gridgap: 4%;
 
 .container {
     text-align: center;
@@ -124,6 +126,19 @@ button:hover {
 ul {
     padding-left: 0px;
     list-style: none;
+    width:80%;
+}
+
+.resCon{
+    justify-content: center;
+    display: grid;
+    grid-template-columns: $gridcol;
+    grid-gap: $gridgap;
+    background-color: rgb(243, 242, 242);
+}
+.resCon p {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
 }
 
 .container2 {
@@ -131,3 +146,23 @@ ul {
     justify-content: center;
     width: 100%;
 }
+li:hover {
+    background-color: rgb(219, 219, 219);
+    width: 100%;
+}
+.listItem {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: $gridcol;
+    grid-column-gap: $gridgap;
+    align-items: center;
+}
+
+.listItem p {
+    font-family: 'Raleway', sans-serif;
+    
+}
+.resimg{
+    text-align: center;
+}
+

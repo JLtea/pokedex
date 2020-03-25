@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Pokemon from './Pokemon';
+import Pokemon from './PokemonList';
 import './components.scss'
 
 class Search extends React.Component {
@@ -81,6 +81,13 @@ class Search extends React.Component {
             </div>
             <div className = "container2">
                 <ul className = "results">
+                    <div className = "resCon">
+                        <p>Number</p>
+                        <p className = "resimg">Default</p>
+                        <p className = "resimg">Shiny</p>
+                        <p>Name</p>
+                        <p>Type</p>
+                    </div>
                     {this.state.filtered.map((pokemon) => <li><Pokemon key = {pokemon.name} id = {pokemon.id} name = {pokemon.name} callBack = {this.props.callBack}/></li>)}
                 </ul>
             </div>
