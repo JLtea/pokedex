@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import Pokemon from './Pokemon';
+import './components.scss'
 
 class Search extends React.Component {
      
@@ -9,7 +9,8 @@ class Search extends React.Component {
         super(props);
         this.state = {
             pokedex: [],
-            filtered: []
+            filtered: [],
+            order: 'Ascending'
         }
         axios.get ('https://pokeapi.co/api/v2/pokemon?limit=24')
         .then(pokeurls => {
@@ -26,6 +27,7 @@ class Search extends React.Component {
         });
         this.handleSearchChange = this.handleSearchChange.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     static defaultProps = {
@@ -43,11 +45,11 @@ class Search extends React.Component {
     handleSelectChange(event) {
         const {value} = event.target;
         let sorted = [];
-        if (value == "name") {
+        if (value === "name") {
             sorted = this.state.filtered.sort((a,b) => (
               (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0
             ));
-        } else if (value == "number") {
+        } else if (value === "number") {
             sorted = this.state.filtered.sort((a,b) => (
                 (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0
             ));
@@ -55,18 +57,30 @@ class Search extends React.Component {
         this.setState({filtered: sorted});
     }
 
+    handleClick(event) {
+        let order = ''
+        if (this.state.order === 'Ascending') {
+            order = 'Descending';
+        } else {
+            order = 'Ascending';
+        }
+        let reversed = this.state.filtered.reverse();
+        this.setState({order: order, filtered: reversed})
+    }
+
     render() {
         return (
             <>
-            <div>
+            <div className = "container">
                 <input onChange = {this.handleSearchChange}/>
                 <select value={this.state.value} onChange={this.handleSelectChange}>
                     <option value="number">Pokedex Number</option>
                     <option value="name">Name</option>
                 </select>
+                <button onClick = {this.handleClick}>{this.state.order}</button>
             </div>
-            <div>
-                <ul>
+            <div className = "container2">
+                <ul className = "results">
                     {this.state.filtered.map((pokemon) => <li><Pokemon key = {pokemon.name} id = {pokemon.id} name = {pokemon.name} callBack = {this.props.callBack}/></li>)}
                 </ul>
             </div>

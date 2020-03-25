@@ -1,27 +1,27 @@
 import React from 'react';
 import axios from 'axios';
-
+import './types.scss';
+import './components.scss';
 class Detail extends React.Component {
     constructor(props) {
         super(props);
-        var pokeurl = "https://pokeapi.co/api/v2/pokemon/" + this.props.id;
         this.state = {
             id : this.props.id,
             name: '',
             sprites: [],
             types: [],
             abilities: [],
-            stats: [],
             height: 0,
             weight: 0
         };
+        var pokeurl = "https://pokeapi.co/api/v2/pokemon/" + this.state.id;
         axios.get(pokeurl)
             .then(response => {
-                const name = response.data.name;
+                let name = response.data.name;
+                name = name.substr(0,1).toUpperCase() + name.substr(1,name.length);
                 const sprites = [];
                 const types = [];
                 const abilities = [];
-                const stats = [];
                 const height = response.data.height;
                 const weight = response.data.weight;
                 sprites.push(response.data.sprites.front_default);
@@ -33,16 +33,46 @@ class Detail extends React.Component {
                     types.push(element.type.name);
                     
                 })
-                response.data.stats.forEach(element => {
-                    stats.push(element.base_stat);
-                })
                 this.setState({
-                    id: this.props.id,
                     name: name,
                     sprites: sprites,
                     types: types,
                     abilities: abilities,
-                    stats: stats,
+                    height: height,
+                    weight: weight
+                })
+            });
+        
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(value) {
+        let id = parseInt(this.state.id) + value;
+        var pokeurl = "https://pokeapi.co/api/v2/pokemon/" + id;
+        axios.get(pokeurl)
+            .then(response => {
+                let name = response.data.name;
+                name = name.substr(0,1).toUpperCase() + name.substr(1,name.length);
+                const sprites = [];
+                const types = [];
+                const abilities = [];
+                const height = response.data.height;
+                const weight = response.data.weight;
+                sprites.push(response.data.sprites.front_default);
+                sprites.push(response.data.sprites.front_shiny);
+                response.data.abilities.forEach(element => {
+                    abilities.push(element.ability.name);
+                })
+                response.data.types.forEach(element => {
+                    types.push(element.type.name);
+                    
+                })
+                this.setState({
+                    id: id,
+                    name: name,
+                    sprites: sprites,
+                    types: types,
+                    abilities: abilities,
                     height: height,
                     weight: weight
                 })
@@ -50,17 +80,41 @@ class Detail extends React.Component {
     }
 
     render() {
-        console.log(this.state.abilities)
+        const types = [];
+
+		this.state.types.forEach(function(element) {
+            types.push(
+                <><span className = {element}>{element}</span>&nbsp;</>	
+            );
+        });
+        
+        const abilities = [];
+
+		this.state.abilities.forEach(function(element) {
+            abilities.push(
+                <><span className = "abilities">{element}</span>&nbsp;</>	
+            );
+        });
         return (
-            <div>
-                {this.state.name}
+            <div className = "detContainer">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+                <a onClick = {() => this.handleClick(-1)} className = "prev">
+                    PREV<i class="material-icons">chevron_left</i>
+                </a>
+            <div className ="detContainer2">
                 <img alt = "image not available" src = {this.state.sprites[0]}/>
-                <img alt = "image not available" src = {this.state.sprites[1]}/>
-                <a>Dex # {this.state.id}</a> 
-                <p>Types: {this.state.types}</p>
-                <p>Abilities: {this.state.abilities}</p>
-                <p>Height: {this.state.height}</p>
-                <p>Weight: {this.state.weight}</p>
+                <div className = "details">
+                    <p>No. {this.state.id}  {this.state.name}</p>
+                    <p>Height: {this.state.height}</p>
+                    <p>Weight: {this.state.weight}</p>
+                    <p>Type {types}</p>
+                    <p>Abilities {abilities}</p>
+                </div>
+                
+            </div>
+                <a onClick = {() => this.handleClick(1)} class = "next">
+                    <i class="material-icons">chevron_right</i>NEXT
+                </a>
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import Gallery from './components/Gallery';
 import Search from './components/Search';
 import Detail from './components/Detail';
@@ -36,10 +36,11 @@ class App extends React.Component {
     const view = this.state.view;
     return (
       <div>
-        <header>Pokedex</header>
+        <div className = "head"><p>Pokedex</p></div>
+        <div className = "line"/>
         <div className = "navbar">
-          <a className = "tabs" onClick = {() => this.handleTab(2)}>Search</a>
-          <a className = "tabs" onClick = {() => this.handleTab(1)}>Gallery</a>
+          <button onClick = {() => this.handleTab(2)}>Search</button>
+          <button onClick = {() => this.handleTab(1)}>Gallery</button>
         </div>
         <div className = "content">
           {view === 1 ? <Gallery callBack = {this.showDetails}/> : null}

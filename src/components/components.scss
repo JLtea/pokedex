@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway');
+
+
+.container {
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    border: none;
+    color: rgb(0, 255, 191);
+    font-family: 'Raleway', sans-serif;
+    border-bottom: 2px solid red;
+}
+input:focus, input:hover {
+    border-bottom: 2px solid rgb(0, 255, 191);
+}
+
+select {
+    width: 20%;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    border: none;
+    color: rgb(0, 255, 191);
+    font-family: 'Raleway', sans-serif;
+}
+
+select:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+button {
+    width: 20%;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    border: none;
+    background-color: white;
+    color: rgb(255, 166, 0);
+    font-family: 'Raleway', sans-serif;
+}
+button:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    width: 100%;
+    justify-content: center;
+}
+
+.item {
+    text-align: center;
+    width: 150px;
+    border-color: rgb(236, 236, 236);
+    border-radius: 5px;
+    border-style: double;
+    padding: 5px;
+    margin: 10px;
+}
+
+.item:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.pokename{
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+}
+
+.detContainer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.detContainer2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: double;
+    border-color: rgb(0, 255, 221);
+    border-radius: 10px;
+    width: 70%;
+}
+.detContainer img {
+    align-self: center;
+    padding-right: 20px;
+    width: 40%;
+}
+.detContainer a {
+    display: flex;
+    margin: 0 auto;
+    color: rgb(0, 255, 221);
+    justify-content: center;
+    align-items: center;
+}
+
+.detContainer a i:hover {
+    cursor: pointer;
+    color: rgb(255, 136, 0);
+}
+
+.details {
+    font-family: 'Raleway', sans-serif;
+}
+
+.abilities {
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgb(226, 226, 226);
+    color: black;
+    font-family: 'Baloo 2', cursive;
+    padding: 0 5px 0 5px;
+    margin: 1px;
+}
+
+ul {
+    padding-left: 0px;
+    list-style: none;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

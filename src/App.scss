@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel');
+
+
+.head {
+  background-color: red;
+  display: table;
+  height: 100px;
+  width: 100%;
+}
+
+.head p {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Abel', sans-serif;
+}
+
+.line {
+    background-color: black;
+    height: 7px;
+    width: 100%;
+}
+
+.navbar {
+    display: block;
+    height: 50px;
+    font-weight: bold;
+    font-family: 'Abel', sans-serif;
+    background-color: white;
+    text-align: center;
+}
+
+.navbar button {
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 4px;
+    margin: 9px;
+    vertical-align: middle;
+    border-style: solid;
+    border-color: rgb(243, 243, 243);
+    color: rgb(105, 105, 105);
+}
+.navbar button:hover {
+    cursor: pointer;
+    background-color: rgb(226, 225, 225);
+}

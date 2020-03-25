@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-
+import './components.scss';
+import './types.scss';
 class Pokemon extends React.Component {
     constructor(props) {
         super(props);
@@ -26,11 +27,18 @@ class Pokemon extends React.Component {
     }
 
     render() {
+        const types = [];
+
+		this.state.types.forEach(function(element) {
+            types.push(
+                <><span className = {element}>{element}</span>&nbsp;</>	
+            );
+		});
         return(
-            <div onClick = {() => this.props.callBack(this.state.id)}>
-                {this.state.name}
-                <img alt = "image not available" src = {this.state.spriteUrl}/>
-                <p>{this.state.types}</p>
+            <div className = "item" onClick = {() => this.props.callBack(this.state.id)}>
+                <img className = "sprite" alt = "img not available" src = {this.state.spriteUrl}/>
+                <p className = "pokename">{this.state.name.substr(0,1).toUpperCase() + this.state.name.substr(1,this.state.name.length)}</p>
+                <p className = "type">{types}</p>
             </div>
         );
     }
