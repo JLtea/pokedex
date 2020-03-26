@@ -51,10 +51,10 @@ class Search extends React.Component {
             ));
         } else if (value === "number") {
             sorted = this.state.filtered.sort((a,b) => (
-                (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0
+                a.id-b.id
             ));
         }
-        this.setState({filtered: sorted});
+        this.setState({filtered: sorted, order: 'Ascending'});
     }
 
     handleClick(event) {
