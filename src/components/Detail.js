@@ -98,11 +98,11 @@ class Detail extends React.Component {
         return (
             <div className = "detContainer">
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-                <a onClick = {() => this.handleClick(-1)} className = "prev">
+                <p className="nav" onClick = {() => this.handleClick(-1)}>
                     PREV<i class="material-icons">chevron_left</i>
-                </a>
+                </p>
             <div className ="detContainer2">
-                <img alt = "image not available" src = {this.state.sprites[0]}/>
+                <img alt = "sprite not available" src = {this.state.sprites[0]}/>
                 <div className = "details">
                     <p>No. {this.state.id}  {this.state.name}</p>
                     <p>Height: {this.state.height}</p>
@@ -112,9 +112,9 @@ class Detail extends React.Component {
                 </div>
                 
             </div>
-                <a onClick = {() => this.handleClick(1)} class = "next">
+                <p className = "nav" onClick = {() => this.handleClick(1)}>
                     <i class="material-icons">chevron_right</i>NEXT
-                </a>
+                </p>
             </div>
         );
     }

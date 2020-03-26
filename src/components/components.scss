@@ -96,7 +96,7 @@ button:hover {
     padding-right: 20px;
     width: 40%;
 }
-.detContainer a {
+.nav {
     display: flex;
     margin: 0 auto;
     color: rgb(0, 255, 221);
@@ -104,7 +104,7 @@ button:hover {
     align-items: center;
 }
 
-.detContainer a i:hover {
+.nav i:hover {
     cursor: pointer;
     color: rgb(255, 136, 0);
 }
